@@ -1,10 +1,12 @@
 "use client";
 
+import React from "react";
 import { useUser, UserButton } from "@clerk/nextjs";
 import { BrainCircuit, LayoutDashboard, Library, LineChart, PlusCircle, Settings } from "lucide-react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { cn } from "@/lib/utils";
+import { Button } from "@/components/ui/button";
 
 const sidebarItems = [
   { icon: LayoutDashboard, label: "Overview", href: "/student" },
