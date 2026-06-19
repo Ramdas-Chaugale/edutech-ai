@@ -43,7 +43,7 @@ async function callAI(prompt: string, retries = 3): Promise<string> {
       ? data.choices[0].message.content 
       : data.candidates?.[0]?.content?.parts?.[0]?.text || "";
 
-  } catch (e) {
+  } catch (_e) {
     if (retries > 0) {
       await new Promise(r => setTimeout(r, 2000));
       return callAI(prompt, retries - 1);

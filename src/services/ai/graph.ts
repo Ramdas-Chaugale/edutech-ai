@@ -7,7 +7,7 @@ export const GraphAnnotation = Annotation.Root({
   difficulty: Annotation<string>,
   count: Annotation<number>,
   context: Annotation<string>,
-  questions: Annotation<any[]>,
+  questions: Annotation<Record<string, unknown>[]>,
   criticFeedback: Annotation<string>,
   status: Annotation<"planning" | "retrieving" | "generating" | "reviewing" | "completed">,
 });
@@ -69,12 +69,12 @@ async function callAI(prompt: string, retries = 3): Promise<string> {
 
 // --- Agent Nodes ---
 
-const planningNode = async (state: typeof GraphAnnotation.State) => {
+const planningNode = async (_state: typeof GraphAnnotation.State) => {
   console.log("---PLANNER AGENT---");
   return { status: "planning" as const };
 };
 
-const retrievalNode = async (state: typeof GraphAnnotation.State) => {
+const retrievalNode = async (_state: typeof GraphAnnotation.State) => {
   console.log("---RETRIEVAL AGENT---");
   return { status: "retrieving" as const, context: "Standard educational context." };
 };
@@ -94,7 +94,7 @@ const generationNode = async (state: typeof GraphAnnotation.State) => {
     }]
   `;
   
-  let rawResponse = await callAI(prompt);
+  const rawResponse = await callAI(prompt);
   
   if (!rawResponse) {
     return {
@@ -112,12 +112,12 @@ const generationNode = async (state: typeof GraphAnnotation.State) => {
     const jsonString = rawResponse.match(/\[[\s\S]*\]/)?.[0] || rawResponse;
     const questions = JSON.parse(jsonString);
     return { status: "generating" as const, questions };
-  } catch (e) {
+  } catch (_e) {
     return { status: "generating" as const, questions: [] };
   }
 };
 
-const reviewNode = async (state: typeof GraphAnnotation.State) => {
+const reviewNode = async (_state: typeof GraphAnnotation.State) => {
   console.log("---CRITIC AGENT---");
   return { status: "completed" as const };
 };

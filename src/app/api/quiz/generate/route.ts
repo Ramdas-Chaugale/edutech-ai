@@ -34,7 +34,7 @@ export async function POST(req: NextRequest) {
         subject,
         difficulty,
         questions: {
-          create: result.questions.map((q: any) => ({
+          create: result.questions.map((q: { text?: string; content?: string; correctAnswer: string; explanation?: string; options: string[] }) => ({
             content: q.text || q.content,
             correctAnswer: q.correctAnswer,
             explanation: q.explanation,
@@ -58,8 +58,9 @@ export async function POST(req: NextRequest) {
     console.log(`✅ QUIZ CREATED: ${quiz.id}`);
 
     return NextResponse.json({ id: quiz.id });
-  } catch (error: any) {
+  } catch (error: unknown) {
+    const errorMessage = error instanceof Error ? error.message : "Internal Error";
     console.error("CRITICAL ERROR DURING GENERATION:", error);
-    return new NextResponse(error.message || "Internal Error", { status: 500 });
+    return new NextResponse(errorMessage, { status: 500 });
   }
 }

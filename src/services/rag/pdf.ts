@@ -1,7 +1,7 @@
-import pdf from "pdf-parse";
-import { RecursiveCharacterTextSplitter } from "langchain/text_splitter";
+import * as pdf from "pdf-parse";
+import { RecursiveCharacterTextSplitter } from "@langchain/textsplitters";
 import { OpenAIEmbeddings } from "@langchain/openai";
-import { getPineconeIndex } from "@/lib/pinecone";
+// import { getPineconeIndex } from "@/lib/pinecone";
 
 /**
  * Service to handle PDF extraction and RAG ingestion.
@@ -23,7 +23,7 @@ export class PDFService {
   /**
    * Extracts text, chunks it, and uploads to Pinecone.
    */
-  async processAndIngest(buffer: Buffer, metadata: Record<string, any>) {
+  async processAndIngest(buffer: Buffer, metadata: Record<string, unknown>) {
     console.log("--- Starting PDF Extraction ---");
     const data = await pdf(buffer);
     const text = data.text;
@@ -32,7 +32,7 @@ export class PDFService {
     const chunks = await this.splitter.createDocuments([text], [metadata]);
 
     console.log(`--- Ingesting ${chunks.length} chunks into Pinecone ---`);
-    const index = getPineconeIndex();
+    // const index = getPineconeIndex();
     
     // We would use index.upsert() here after generating vectors
     // For simplicity, we'll use LangChain's vector store wrapper in the final implementation
