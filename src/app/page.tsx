@@ -47,8 +47,8 @@ export default function Home() {
           {!isSignedIn ? (
             <>
               <div className="hidden md:flex items-center gap-8 mr-8 text-sm font-medium text-gray-400">
-                <Link href="#architecture" className="hover:text-white transition-colors">Architecture</Link>
-                <Link href="#hero" className="hover:text-white transition-colors">Live Demo</Link>
+                <a href="#architecture" className="hover:text-white transition-colors cursor-pointer">Architecture</a>
+                <a href="#hero" className="hover:text-white transition-colors cursor-pointer">Live Demo</a>
                 <Link href="https://github.com/Ramdas-Chaugale/edutech-ai" className="hover:text-white transition-colors">Source Code</Link>
               </div>
               <SignInButton mode="modal">
@@ -89,10 +89,10 @@ export default function Home() {
         >
           <motion.div
             variants={itemVariants}
-            className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-white/5 border border-white/10 text-xs font-medium text-purple-400 mb-8"
+            className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-blue-500/10 border border-blue-500/20 text-xs font-medium text-blue-400 mb-8"
           >
             <Sparkles className="w-3 h-3" />
-            <span>Built with RAG, LangGraph & Gemini 1.5 Pro</span>
+            <span>New: Query-Based Quiz Generation is Live!</span>
           </motion.div>
 
           <motion.h1
@@ -109,28 +109,35 @@ export default function Home() {
             variants={itemVariants}
             className="text-lg md:text-xl text-gray-400 mb-12 max-w-2xl mx-auto leading-relaxed"
           >
-            An engineering showcase of autonomous educational agents that generate quizzes, manage learning roadmaps, and provide semantic evaluations.
+            Autonomous educational agents that generate quizzes from **PDFs**, **Plain Queries**, or **Exam Patterns** with semantic evaluation.
           </motion.p>
 
           <motion.div variants={itemVariants} className="flex flex-col md:flex-row gap-4 justify-center">
             {isSignedIn ? (
-              <Link href="/student/create">
-                <Button size="lg" className="h-14 px-8 text-base bg-gradient-to-r from-purple-600 to-blue-600 hover:from-purple-500 hover:to-blue-500 border-0 shadow-2xl shadow-purple-500/30">
-                  Launch AI Generator <ArrowRight className="ml-2 w-4 h-4" />
-                </Button>
-              </Link>
+              <>
+                <Link href="/student/create">
+                  <Button size="lg" className="h-14 px-8 text-base bg-gradient-to-r from-purple-600 to-blue-600 hover:from-purple-500 hover:to-blue-500 border-0 shadow-2xl shadow-purple-500/30">
+                    Launch AI Generator <ArrowRight className="ml-2 w-4 h-4" />
+                  </Button>
+                </Link>
+                <Link href="/student/create/pdf">
+                  <Button size="lg" variant="outline" className="h-14 px-8 text-base bg-white/5 border-white/10 hover:bg-white/10 text-white">
+                    <FileUp className="mr-2 w-4 h-4 text-blue-400" /> Upload PDF
+                  </Button>
+                </Link>
+              </>
             ) : (
               <SignUpButton mode="modal">
                 <Button size="lg" className="h-14 px-8 text-base bg-gradient-to-r from-purple-600 to-blue-600 hover:from-purple-500 hover:to-blue-500 border-0 shadow-2xl shadow-purple-500/30">
-                  Launch AI Generator <ArrowRight className="ml-2 w-4 h-4" />
+                  Get Started Free <ArrowRight className="ml-2 w-4 h-4" />
                 </Button>
               </SignUpButton>
             )}
-              <Link href="https://github.com/Ramdas-Chaugale/edutech-ai">
-                <Button size="lg" variant="outline" className="h-14 px-8 text-base bg-white/5 border-white/10 hover:bg-white/10 text-white">
-                  View on GitHub
-                </Button>
-              </Link>
+            <Link href="https://github.com/Ramdas-Chaugale/edutech-ai">
+              <Button size="lg" variant="outline" className="h-14 px-8 text-base bg-white/5 border-white/10 hover:bg-white/10 text-white">
+                View on GitHub
+              </Button>
+            </Link>
           </motion.div>
 
           {/* Features Grid */}
@@ -142,18 +149,18 @@ export default function Home() {
             {[
               {
                 icon: BrainCircuit,
-                title: "Agentic Workflows",
-                desc: "Multiple AI agents collaborate to generate accurate, high-quality content.",
+                title: "Query-to-Quiz",
+                desc: "Simply type your requirement (e.g. 'Quiz on Algebra for Grade 8') and our agents do the rest.",
               },
               {
-                icon: GraduationCap,
-                title: "Exam Patterns",
-                desc: "Specialized models for CBSE, JEE, NEET, UPSC, and State Boards.",
+                icon: FileText,
+                title: "PDF Intelligence",
+                desc: "Upload textbooks or notes. Our RAG engine extracts and generates quizzes from your content.",
               },
               {
                 icon: LineChart,
-                title: "Adaptive Engine",
-                desc: "Analyzes your weak spots and generates customized practice plans.",
+                title: "Semantic Insights",
+                desc: "Get deep, qualitative feedback on your answers beyond just 'correct' or 'incorrect'.",
               },
             ].map((feature, i) => (
               <motion.div
@@ -181,10 +188,11 @@ export default function Home() {
         <div className="flex gap-8">
           <Link href="#" className="hover:text-white">Privacy Policy</Link>
           <Link href="#" className="hover:text-white">Terms of Service</Link>
-          <Link href="mailto:your-email@example.com" className="hover:text-white">Contact</Link>
+          <a href="mailto:ramdaschaugale@gmail.com" className="hover:text-white">Contact</a>
         </div>
         <div className="text-gray-600">© 2026 EduTech AI. Built with Gemini & Next.js 15.</div>
       </footer>
+
     </div>
   );
 }

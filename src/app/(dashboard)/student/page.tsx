@@ -34,7 +34,12 @@ export default async function StudentDashboard() {
           </h1>
           <p className="text-gray-400 text-sm">Track your AI-generated assessments and learning progress.</p>
         </div>
-        <div className="flex gap-4">
+        <div className="flex flex-wrap gap-4">
+          <Link href="/student/create/query">
+            <Button variant="outline" className="border-amber-500/20 text-amber-400 bg-amber-500/5 hover:bg-amber-500/10 gap-2">
+              <Sparkles className="w-4 h-4" /> Magic Query
+            </Button>
+          </Link>
           <Link href="/student/create/pdf">
             <Button variant="outline" className="border-white/10 text-gray-400 hover:text-white gap-2">
               <Plus className="w-4 h-4 text-blue-400" /> Import PDF
