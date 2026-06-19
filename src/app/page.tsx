@@ -47,8 +47,8 @@ export default function Home() {
           {!isSignedIn ? (
             <>
               <div className="hidden md:flex items-center gap-8 mr-8 text-sm font-medium text-gray-400">
-                <Link href="#features" className="hover:text-white transition-colors">Architecture</Link>
-                <Link href="#demo" className="hover:text-white transition-colors">Live Demo</Link>
+                <Link href="#architecture" className="hover:text-white transition-colors">Architecture</Link>
+                <Link href="#hero" className="hover:text-white transition-colors">Live Demo</Link>
                 <Link href="https://github.com/Ramdas-Chaugale/edutech-ai" className="hover:text-white transition-colors">Source Code</Link>
               </div>
               <SignInButton mode="modal">
@@ -80,7 +80,7 @@ export default function Home() {
       </nav>
 
       {/* Hero Section */}
-      <main className="relative z-10 flex flex-col items-center justify-center flex-grow px-6 pt-20 pb-32">
+      <main id="hero" className="relative z-10 flex flex-col items-center justify-center flex-grow px-6 pt-20 pb-32">
         <motion.div
           variants={containerVariants}
           initial="hidden"
@@ -135,6 +135,7 @@ export default function Home() {
 
           {/* Features Grid */}
           <motion.div
+            id="architecture"
             variants={containerVariants}
             className="grid grid-cols-1 md:grid-cols-3 gap-6 mt-24 text-left"
           >
@@ -180,7 +181,7 @@ export default function Home() {
         <div className="flex gap-8">
           <Link href="#" className="hover:text-white">Privacy Policy</Link>
           <Link href="#" className="hover:text-white">Terms of Service</Link>
-          <Link href="#" className="hover:text-white">Contact</Link>
+          <Link href="mailto:your-email@example.com" className="hover:text-white">Contact</Link>
         </div>
         <div className="text-gray-600">© 2026 EduTech AI. Built with Gemini & Next.js 15.</div>
       </footer>
