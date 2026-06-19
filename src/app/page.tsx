@@ -3,7 +3,7 @@
 import { SignInButton, SignOutButton, useUser, SignUpButton } from "@clerk/nextjs";
 import { Button } from "@/components/ui/button";
 import { motion } from "framer-motion";
-import { ArrowRight, BrainCircuit, GraduationCap, LineChart, ShieldCheck, Sparkles } from "lucide-react";
+import { ArrowRight, BrainCircuit, GraduationCap, LineChart, ShieldCheck, Sparkles, FileUp, FileText } from "lucide-react";
 import Link from "next/link";
 
 export default function Home() {
