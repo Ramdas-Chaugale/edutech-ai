@@ -1,5 +1,6 @@
 # 🚀 EduTech AI: Autonomous Agentic Learning Platform
 
+[![Vercel](https://img.shields.io/badge/Vercel-Live-green?style=for-the-badge&logo=vercel)](https://edutech-ai-dusky.vercel.app/)
 [![Next.js](https://img.shields.io/badge/Next.js-15-black?style=for-the-badge&logo=next.js)](https://nextjs.org/)
 [![TypeScript](https://img.shields.io/badge/TypeScript-5-blue?style=for-the-badge&logo=typescript)](https://www.typescriptlang.org/)
 [![LangGraph](https://img.shields.io/badge/LangGraph-Agentic-orange?style=for-the-badge)](https://langchain-ai.github.io/langgraphjs/)
@@ -82,6 +83,9 @@ npm run dev
 ---
 
 ## 📦 Deployment
+
+### Live Demo
+Check out the live application here: [https://edutech-ai-dusky.vercel.app/](https://edutech-ai-dusky.vercel.app/)
 
 ### Deploy to Vercel
 1. Push your code to GitHub.

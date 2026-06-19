@@ -49,7 +49,7 @@ export default function Home() {
               <div className="hidden md:flex items-center gap-8 mr-8 text-sm font-medium text-gray-400">
                 <Link href="#features" className="hover:text-white transition-colors">Architecture</Link>
                 <Link href="#demo" className="hover:text-white transition-colors">Live Demo</Link>
-                <Link href="https://github.com" className="hover:text-white transition-colors">Source Code</Link>
+                <Link href="https://github.com/Ramdas-Chaugale/edutech-ai" className="hover:text-white transition-colors">Source Code</Link>
               </div>
               <SignInButton mode="modal">
                 <Button variant="ghost" className="text-gray-300 hover:text-white hover:bg-white/5">
@@ -126,11 +126,11 @@ export default function Home() {
                 </Button>
               </SignUpButton>
             )}
-            <Link href="https://github.com">
-              <Button size="lg" variant="outline" className="h-14 px-8 text-base bg-white/5 border-white/10 hover:bg-white/10 text-white">
-                View on GitHub
-              </Button>
-            </Link>
+              <Link href="https://github.com/Ramdas-Chaugale/edutech-ai">
+                <Button size="lg" variant="outline" className="h-14 px-8 text-base bg-white/5 border-white/10 hover:bg-white/10 text-white">
+                  View on GitHub
+                </Button>
+              </Link>
           </motion.div>
 
           {/* Features Grid */}
