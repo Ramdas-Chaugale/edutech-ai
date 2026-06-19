@@ -98,7 +98,3 @@ Check out the live application here: [https://edutech-ai-dusky.vercel.app/](http
 
 ## 📄 License
 Distributed under the MIT License. See `LICENSE` for more information.
-
----
-
-**Developed with ❤️ for the future of education.**
