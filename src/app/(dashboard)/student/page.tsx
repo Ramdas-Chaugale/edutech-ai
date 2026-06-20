@@ -4,7 +4,7 @@ import { redirect } from "next/navigation";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
-import { Brain, History, LayoutDashboard, Plus, PlayCircle } from "lucide-react";
+import { Brain, History, LayoutDashboard, Plus, PlayCircle, Sparkles } from "lucide-react";
 import Link from "next/link";
 
 export default async function StudentDashboard() {
