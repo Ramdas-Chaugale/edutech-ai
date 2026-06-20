@@ -50,11 +50,6 @@ export default async function StudentDashboard() {
               <Sparkles className="w-4 h-4" /> Magic Query
             </Button>
           </Link>
-          <Link href="/student/create/pdf">
-            <Button variant="outline" className="border-white/10 text-gray-400 hover:text-white gap-2">
-              <Plus className="w-4 h-4 text-blue-400" /> Import PDF
-            </Button>
-          </Link>
           <Link href="/student/create">
             <Button className="bg-purple-600 hover:bg-purple-500 text-white gap-2 shadow-lg shadow-purple-500/20">
               <Plus className="w-4 h-4" /> New AI Quiz
