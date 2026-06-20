@@ -12,7 +12,17 @@ export default async function StudentDashboard() {
   if (!clerkId) redirect("/");
 
   // Fetch dbUser to get the internal ID
-  const dbUser = await prisma.user.findUnique({ where: { clerkId } });
+  let dbUser = await prisma.user.findUnique({ where: { clerkId } });
+  
+  // Self-Healing: Create user in DB if they exist in Clerk but not here
+  if (!dbUser) {
+    dbUser = await prisma.user.create({
+      data: {
+        clerkId,
+        role: "STUDENT",
+      }
+    });
+  }
   
   const quizzes = dbUser ? await prisma.quiz.findMany({
     where: { 
