@@ -1,46 +1,58 @@
 import * as pdf from "pdf-parse";
 import { RecursiveCharacterTextSplitter } from "@langchain/textsplitters";
-import { OpenAIEmbeddings } from "@langchain/openai";
-// import { getPineconeIndex } from "@/lib/pinecone";
+import { GoogleGenerativeAIEmbeddings } from "@langchain/google-genai";
+import { TaskType } from "@google/generative-ai";
 
 /**
  * Service to handle PDF extraction and RAG ingestion.
  */
 export class PDFService {
   private splitter: RecursiveCharacterTextSplitter;
-  private embeddings: OpenAIEmbeddings;
+  private embeddings: GoogleGenerativeAIEmbeddings;
 
   constructor() {
     this.splitter = new RecursiveCharacterTextSplitter({
       chunkSize: 1000,
       chunkOverlap: 200,
     });
-    this.embeddings = new OpenAIEmbeddings({
-      apiKey: process.env.OPENAI_API_KEY,
+    this.embeddings = new GoogleGenerativeAIEmbeddings({
+      apiKey: process.env.GOOGLE_API_KEY,
+      modelName: "embedding-001",
+      taskType: TaskType.RETRIEVAL_DOCUMENT,
     });
   }
 
   /**
-   * Extracts text, chunks it, and uploads to Pinecone.
+   * Extracts text, chunks it, and prepares context.
    */
-  async processAndIngest(buffer: Buffer, metadata: Record<string, unknown>) {
-    console.log("--- Starting PDF Extraction ---");
-    const data = await pdf(buffer);
-    const text = data.text;
+  async processAndIngest(buffer: Buffer, metadata: Record<string, any>) {
+    try {
+      console.log("--- Starting PDF Extraction ---");
+      const data = await pdf(buffer);
+      const text = data.text;
 
-    console.log("--- Chunking Text ---");
-    const chunks = await this.splitter.createDocuments([text], [metadata]);
+      if (!text || text.trim().length === 0) {
+        throw new Error("No readable text found in PDF");
+      }
 
-    console.log(`--- Ingesting ${chunks.length} chunks into Pinecone ---`);
-    // const index = getPineconeIndex();
-    
-    // We would use index.upsert() here after generating vectors
-    // For simplicity, we'll use LangChain's vector store wrapper in the final implementation
-    return {
-      success: true,
-      chunkCount: chunks.length,
-      textPreview: text.substring(0, 200) + "...",
-    };
+      console.log("--- Chunking Text ---");
+      const docs = await this.splitter.createDocuments([text], [metadata]);
+
+      console.log(`--- Processed ${docs.length} segments from PDF ---`);
+      
+      // In a full production env, we'd upsert to Pinecone here.
+      // For this deployment, we return the parsed content so it can be used immediately.
+      return {
+        success: true,
+        chunkCount: docs.length,
+        subject: metadata.subject,
+        topic: metadata.topic,
+        preview: text.substring(0, 500) + "..."
+      };
+    } catch (error: any) {
+      console.error("PDF Processing Error:", error);
+      throw new Error(`PDF Service Failure: ${error.message}`);
+    }
   }
 }
 
